@@ -2,4 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Modmail_Forwarder
+/.vs
+/Modmail_Forwarder/bin
+/Modmail_Forwarder/obj/Debug
+/Modmail_Forwarder/config.debug.json

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Modmail_Forwarder", "Modmail_Forwarder\Modmail_Forwarder.njsproj", "{9981909C-2674-4149-9605-9A09C3A25F2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9981909C-2674-4149-9605-9A09C3A25F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9981909C-2674-4149-9605-9A09C3A25F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9981909C-2674-4149-9605-9A09C3A25F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9981909C-2674-4149-9605-9A09C3A25F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57BFFC49-C8AA-4DA5-A518-C48EABE85EE6}
+	EndGlobalSection
+EndGlobal
