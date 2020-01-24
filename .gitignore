@@ -6,3 +6,5 @@
 /Modmail_Forwarder/bin
 /Modmail_Forwarder/obj/Debug
 /Modmail_Forwarder/config.debug.json
+*.js
+*.map
