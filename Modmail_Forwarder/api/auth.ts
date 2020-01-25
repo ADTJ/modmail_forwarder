@@ -14,7 +14,7 @@ export module Auth {
         password: string;
     }
 
-    export interface AuthToken {
+    export interface Token {
         access_token: string;
         expires: Date;
         expires_in: number;
@@ -49,7 +49,7 @@ export module Auth {
 
         let clientAuth = Auth.getBasicAuth(credentials.client_id, credentials.client_secret);
 
-        let { request, response } = Request.post<AuthToken>(url, body, { parseJson: true, headers: [["Authorization", `Basic ${clientAuth}`]] });
+        let { request, response } = Request.post<Token>(url, body, { parseJson: true, headers: [["Authorization", `Basic ${clientAuth}`]] });
 
         let result = await response;
         if (result["error"])

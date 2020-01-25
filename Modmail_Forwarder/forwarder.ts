@@ -1,4 +1,5 @@
 import { Auth } from './api/auth';
+import { Me } from './api/me';
 
 export class Forwarder {
 
@@ -6,7 +7,7 @@ export class Forwarder {
 
     }
 
-    protected authToken: Auth.AuthToken;
+    protected authToken: Auth.Token;
 
     async checkAuth() {
         if (!this.authToken)
@@ -15,6 +16,8 @@ export class Forwarder {
 
     async checkMessages() {
         await this.checkAuth();
+        let user = await Me.get({ authToken: this.authToken, url: this.config.endpointUrl });
+        console.log(user);
     }
 }
 
