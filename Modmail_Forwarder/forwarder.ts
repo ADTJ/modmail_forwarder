@@ -26,5 +26,6 @@ export module Forwarder {
         authEndpointUrl: string;
         endpointUrl: string;
         credentials: Auth.Credentials;
+        version: string;
     }
 }

@@ -3,6 +3,8 @@ import { RequestOptions, ClientRequest, OutgoingHttpHeaders } from 'http';
 import { URL } from 'url';
 
 export module Request {
+    export let defaultUserAgent = 'NodeJS script';
+
     export interface RequestResult<T> {
         request: ClientRequest;
         response: Promise<T>
@@ -59,7 +61,7 @@ export module Request {
     const requester = (options: RequestOptions, body?: any): ({ request: ClientRequest, response: Promise<string> }) => {
         let request = null as ClientRequest;
         if (!("User-Agent" in options.headers))
-            options.headers["User-Agent"] = "script:nytBls0ShM9Rkg:0.1 (by /u/daxianj)";
+            options.headers["User-Agent"] = defaultUserAgent;
 
         let response = new Promise<string>((resolve, reject) => {
             try {

@@ -1,6 +1,7 @@
 import { Forwarder } from './Forwarder';
 import { FileSystem } from './FileSystem';
 import { Utils } from './Utils';
+import { Request } from './Request';
 
 module Main {
     export async function run() {
@@ -11,6 +12,8 @@ module Main {
 
             console.log("Loaded configuration:");
             console.log(config);
+
+            Request.defaultUserAgent = `script:${config.credentials.client_id}: ${config.version}(by /u/daxianj)`;
 
             const forwarderInstance = new Forwarder(config);
             forwarderInstance.checkMessages();
