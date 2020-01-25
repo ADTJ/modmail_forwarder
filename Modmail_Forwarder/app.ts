@@ -1,16 +1,19 @@
-//import { Forwarder } from './Forwarder';
+import { Forwarder } from './Forwarder';
 import { FileSystem } from './FileSystem';
-import { Request } from './Request';
 import { Utils } from './Utils';
 
 module Main {
     export async function run() {
         try {
-            let content = JSON.parse(await FileSystem.readFile("config.json"));
+            let config = JSON.parse(await FileSystem.readFile("config.json")) as Forwarder.Config;
             if (process.execArgv.find(x => x.includes("inspect"))) //Debug mode
-                Object.assign(content, JSON.parse(await FileSystem.readFile("config.debug.json")));
+                Object.assign(config, JSON.parse(await FileSystem.readFile("config.debug.json")));
 
-            console.log(content);
+            console.log("Loaded configuration:");
+            console.log(config);
+
+            const forwarderInstance = new Forwarder(config);
+            forwarderInstance.checkMessages();
         }
         catch (err) {
             console.error(err);
