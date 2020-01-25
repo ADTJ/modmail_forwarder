@@ -1,5 +1,6 @@
 import { Auth } from './api/auth';
 import { Me } from './api/me';
+import { Mod } from './api/mod';
 
 export class Forwarder {
 
@@ -8,6 +9,8 @@ export class Forwarder {
     }
 
     protected authToken: Auth.Token;
+    protected user: Me.User;
+    protected get apiParams() { return { authToken: this.authToken, url: this.config.endpointUrl } }
 
     async checkAuth() {
         if (!this.authToken)
@@ -16,8 +19,24 @@ export class Forwarder {
 
     async checkMessages() {
         await this.checkAuth();
-        let user = await Me.get({ authToken: this.authToken, url: this.config.endpointUrl });
-        console.log(user);
+        let user = this.user || (this.user = await Me.get(this.apiParams));
+        if (!user.is_mod)
+            throw new Error("Logged in user is not a moderator");
+
+        let unreadMsgCount = await Mod.Conversations.Unread.count(this.apiParams);
+        let unreadMsgTypes = Object.entries(unreadMsgCount).filter(([_, value]) => value > 0) as [keyof (typeof unreadMsgCount), number][];
+        if (unreadMsgTypes.length < 1) {
+            console.log("No unread messages found");
+            return;
+        }
+
+        console.log("The following groups have unread messages:");
+        console.log(unreadMsgTypes.map(([key, value]) => `${key}: ${value.toString()}`).join('\r\n'));
+
+        //TODO: Fetch most recent message?
+        //let messages = await Mod.Conversations.get(this.apiParams, { sort: "unread", state: "all" });
+        //console.log("Messages found:");
+        //console.log(messages);
     }
 }
 

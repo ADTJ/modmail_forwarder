@@ -5,6 +5,17 @@ import { URL } from 'url';
 export module Request {
     export let defaultUserAgent = 'NodeJS script';
 
+    export function formEncode(obj: any) {
+        if (!obj || typeof obj !== "object")
+            throw new TypeError("Invalid argument for 'obj'");
+
+        let encoded = Object.entries(obj)
+            .map(([key, value]) => `${encodeURIComponent(key.toString())}=${encodeURIComponent(value.toString())}`)
+            .join('&');
+
+        return encoded;
+    }
+
     export interface RequestResult<T> {
         request: ClientRequest;
         response: Promise<T>

@@ -3,7 +3,7 @@ import { Request } from "../Request";
 
 export module Me {
 
-    export interface MeResponse {
+    export interface User {
         is_employee: boolean;
         seen_layout_switch: boolean;
         has_visited_new_profile: boolean;
@@ -66,9 +66,9 @@ export module Me {
     }
 
     export async function get(apiParams: Api.Params) {
-        const endpoint = 'me';
+        const endpoint = 'v1/me';
         let url = `${apiParams.url.split('/').filter(x => x).join('/')}/${endpoint}`;
-        let { response } = Request.get<MeResponse>(url, {
+        let { response } = Request.get<User>(url, {
             parseJson: true,
             headers: [["Authorization", `Bearer ${apiParams.authToken.access_token}`]]
         });

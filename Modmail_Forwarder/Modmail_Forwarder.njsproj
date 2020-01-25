@@ -49,6 +49,9 @@
     <TypeScriptCompile Include="api\me.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="api\mod.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="forwarder.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

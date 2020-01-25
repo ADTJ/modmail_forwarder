@@ -1,5 +1,6 @@
 declare global {
     const utils: typeof Utils.utils;
+    const wait: typeof waitFn;
 }
 
 export module Utils {
@@ -35,4 +36,22 @@ export module Utils {
     }
 }
 
-Object.assign(global, { utils: Utils.utils });
+function waitFn(waitMs: number): Promise<void>;
+function waitFn<T>(callback: () => T, waitMs?: number): Promise<T>;
+function waitFn<T>(param1: any, waitMs = 0): Promise<T> {
+    let callback = null as () => T;
+    if (typeof param1 === 'number') waitMs = param1;
+    else callback = param1;
+
+    return new Promise<T>((resolve, reject) => setTimeout(() => {
+        try {
+            resolve(callback?.());
+        }
+        catch (err) { reject(err); }
+    }, waitMs));
+}
+
+Object.assign(global, {
+    utils: Utils.utils,
+    wait: waitFn
+});
