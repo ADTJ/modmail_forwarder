@@ -26,22 +26,11 @@ export module Auth {
         return Buffer.from(`${username}:${password}`).toString("base64");
     }
 
-    export function formEncode(obj: any) {
-        if (!obj || typeof obj !== "object")
-            throw new TypeError("Invalid argument for 'obj'");
-
-        let encoded = Object.entries(obj)
-            .map(([key, value]) => `${encodeURIComponent(key.toString())}=${encodeURIComponent(value.toString())}`)
-            .join('&');
-
-        return encoded;
-    }
-
     export async function getToken(baseUrl: string, credentials: Credentials) {
         const endpoint = 'access_token';
 
         let url = `${baseUrl.split('/').filter(x => x).join('/')}/${endpoint}`;
-        let body = Auth.formEncode({
+        let body = Request.formEncode({
             grant_type: "password",
             username: credentials.username,
             password: credentials.password

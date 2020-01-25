@@ -1,6 +1,6 @@
 {
   "authEndpointUrl": "https://www.reddit.com/api/v1/",
-  "endpointUrl": "https://oauth.reddit.com/api/v1/",
+  "endpointUrl": "https://oauth.reddit.com/api/",
   "credentials": {
     "client_id": "",
     "client_secret": "",

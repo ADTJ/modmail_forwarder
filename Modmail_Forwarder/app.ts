@@ -16,15 +16,15 @@ module Main {
             Request.defaultUserAgent = `script:${config.credentials.client_id}: ${config.version}(by /u/daxianj)`;
 
             const forwarderInstance = new Forwarder(config);
-            forwarderInstance.checkMessages();
+
+            while (true) {
+                await wait(5000);
+                await forwarderInstance.checkMessages();
+            }
         }
         catch (err) {
             console.error(err);
-        }
-        finally {
-            (function noExit() {
-                setTimeout(() => noExit(), 5000);
-            })();
+            process.exit(1);
         }
     }
 
