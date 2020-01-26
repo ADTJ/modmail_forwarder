@@ -1,11 +1,14 @@
 {
   "authEndpointUrl": "https://www.reddit.com/api/v1/",
   "endpointUrl": "https://oauth.reddit.com/api/",
+  "checkInterval":  60000,
   "credentials": {
     "client_id": "",
     "client_secret": "",
     "username": "",
     "password": ""
   },
+  "outputMode": "Reddit",
+  "recipient":  "",
   "version": 0.1
 }
